@@ -26,7 +26,7 @@ func generateRandomAlphanumeric(length int) []byte {
 func main() {
 	requestHandler := func(ctx *fasthttp.RequestCtx) {
 		nano := time.Now().UnixNano()
-		var str string
+		var str []byte
 		body := generateRandomAlphanumeric(rand.Intn((MaxBody - MinBody + 1) + MinBody))
 		if str = ctx.Request.Header.Peek("X-Arrived-time"); str != nil {
 			ctx.Response.Header.Set("X-Arrived-time", string(str))
@@ -38,7 +38,7 @@ func main() {
 		ctx.Response.Header.Set("Content-Type", "application/text")
 		ctx.Response.Header.Set("Server", "OUR.TEST.SERVER/28")
 		ctx.SetBodyString(string(body))
-		startTime, err := strconv.ParseInt(str, 10, 64) // base 10, 64-bit
+		startTime, err := strconv.ParseInt(string(str), 10, 64) // base 10, 64-bit
 		if err != nil {
 			fmt.Println("Error:", err)
 			return
