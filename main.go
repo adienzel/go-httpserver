@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/valyala/fasthttp"
 	"log"
 	"math/rand"
@@ -38,13 +37,7 @@ func main() {
 		ctx.Response.Header.Set("Content-Type", "application/text")
 		ctx.Response.Header.Set("Server", "OUR.TEST.SERVER/28")
 		ctx.SetBodyString(string(body))
-		startTime, err := strconv.ParseInt(string(str), 10, 64) // base 10, 64-bit
-		if err != nil {
-			fmt.Println("Error:", err)
-			return
-		}
-
-		log.Printf("take %d", (nano-startTime)/1000000)
+		log.Printf("take %d", (time.Now().UnixNano()-nano)/1000000)
 	}
 
 	if err := fasthttp.ListenAndServe(":8080", requestHandler); err != nil {
