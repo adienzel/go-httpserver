@@ -11,7 +11,7 @@ count=$1
 port=8082
 
 for i in $(seq 1 $count); do
-    docker run -d -e APP_PORT=$port --name fasthttp_$i $IMAGE_NAME
+    docker run -d --network host -e APP_PORT=$port --name fasthttp_$i $IMAGE_NAME
     echo "Started fasthttp_$i on port $port"
     port=$((port + 1))  # Skip one port each time
 done

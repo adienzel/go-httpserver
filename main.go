@@ -32,7 +32,7 @@ func main() {
 	}
 	// Create a TCP listener manually
 	addr := ":" + port
-	log.Printf("listening addr = %d", addr)
+	log.Printf("listening addr = %s./c	", addr)
 	ln, err := net.Listen("tcp", addr)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to listen: %v\n", err)
