@@ -7,6 +7,6 @@ RUN go build -o server
 FROM alpine:latest
 WORKDIR /app
 COPY --from=builder /app/server .
-ENV APP_PORT 8080:wq
+ENV APP_POR="8080"
 
 CMD ["./server"]
