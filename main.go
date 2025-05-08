@@ -26,8 +26,12 @@ func generateRandomAlphanumeric(length int) []byte {
 }
 
 func main() {
+	port := os.Getenv("APP_PORT")
+	if port == "" {
+		port = "8080" // default fallback
+	}
 	// Create a TCP listener manually
-	addr := ":8080"
+	addr := ":" + port
 	ln, err := net.Listen("tcp", addr)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to listen: %v\n", err)
